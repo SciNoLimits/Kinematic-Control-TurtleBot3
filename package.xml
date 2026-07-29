@@ -3,13 +3,14 @@
 <package format="3">
   <name>kinematic_control_turtle_bot_3</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="scinolimits@todo.todo">scinolimits</maintainer>
-  <license>TODO: License declaration</license>
+  <description>Kinematic Control for TurtleBot3</description>
+  <maintainer email="prazwaldutta7@gmail.com">SciNoLimits</maintainer>
+  <license>MIT License</license>
 
   <depend>rclpy</depend>
   <depend>geometry_msgs</depend>
   <depend>turtlesim</depend>
+  <depend>nav_msgs</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
