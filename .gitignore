@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# pytest
+.pytest_cache/
+
+# VS Code
+.vscode/
+
+# Linux
+*.swp
+.DS_Store
