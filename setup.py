@@ -27,6 +27,7 @@ setup(
             'my_node = kinematic_control_turtle_bot_3.my_node:main',
             'minimal_velocity_publisher = kinematic_control_turtle_bot_3.minimal_velocity_publisher:main',
             'minimal_odometry_subscriber = kinematic_control_turtle_bot_3.minimal_odometry_subscriber:main',
+            'tb3_siegwart_controller = kinematic_control_turtle_bot_3.tb3_siegwart_controller:main',
         ],
     },
 )
