@@ -3,7 +3,7 @@
 
 import math
 
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TwistStamped
 
 from nav_msgs.msg import Odometry
 
@@ -66,7 +66,7 @@ class SiegwartController(Node):
         )
 
         self.publisher_ = self.create_publisher(
-            msg_type=Twist, topic="/cmd_vel", qos_profile=10
+            msg_type=TwistStamped, topic="/cmd_vel", qos_profile=10
         )
 
         self.get_logger().info(
@@ -125,8 +125,9 @@ class SiegwartController(Node):
         return scale * v, scale * w
 
     def stop(self):
-        """Publish zero velocity."""
-        self.publisher_.publish(Twist())
+        cmd = TwistStamped()
+        cmd.header.stamp = self.get_clock().now().to_msg()
+        self.publisher_.publish(cmd)
         self.get_logger().info("Robot Stopped.")
 
     def control_loop(self):
@@ -143,9 +144,13 @@ class SiegwartController(Node):
         v, w = self.compute_control(rho, alpha, beta)
         v, w = self.saturate(v, w)
         
-        cmd = Twist()
-        cmd.linear.x = v
-        cmd.angular.z = w
+        cmd = TwistStamped()
+        cmd.header.stamp = self.get_clock().now().to_msg()
+        cmd.header.frame_id = "base_link"
+
+        cmd.twist.linear.x = v
+        cmd.twist.angular.z = w
+
         self.publisher_.publish(cmd)
         
         self.get_logger().info(f"rho ={rho:.3f} alpha ={alpha:.3f} beta ={beta:.3f} v ={v:.3f} w ={w:.3f}",
