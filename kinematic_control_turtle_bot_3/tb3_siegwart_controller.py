@@ -42,16 +42,25 @@ class SiegwartController(Node):
         self.theta_goal = self.get_parameter("theta_goal").get_parameter_value().double_value
 
         # Controller Gains
-        self.k_rho = 0.4
-        self.k_alpha = 0.8
-        self.k_beta = -0.15
-
-        # Hardware Limits of TurtleBot3
-        self.v_max = 0.22  # m/s
-        self.w_max = 2.84  # rad/s
+        self.declare_parameter("k_rho", 0.4)
+        self.declare_parameter("k_alpha", 0.8)
+        self.declare_parameter("k_beta", -0.15)
+        
+        self.k_rho = self.get_parameter("k_rho").get_parameter_value().double_value
+        self.k_alpha = self.get_parameter("k_alpha").get_parameter_value().double_value
+        self.k_beta = self.get_parameter("k_beta").get_parameter_value().double_value
 
         # Goal Tolerance
-        self.rho_tol = 0.05  # Stop within 5 cm
+        self.declare_parameter("rho_tol", 0.05)  # Stop within 5 cm
+        
+        self.rho_tol = self.get_parameter("rho_tol").get_parameter_value().double_value
+
+        # Hardware Limits of TurtleBot3
+        self.declare_parameter("v_max", 0.22)  # m/s
+        self.declare_parameter("w_max", 2.84)  # rad/s
+        
+        self.v_max = self.get_parameter("v_max").get_parameter_value().double_value
+        self.w_max = self.get_parameter("w_max").get_parameter_value().double_value
 
         # Robot State - updated by the subscriber  callback
         self.x = 0.0  # meters
