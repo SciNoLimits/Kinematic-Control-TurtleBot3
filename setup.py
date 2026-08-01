@@ -19,8 +19,8 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='scinolimits',
-    maintainer_email='scinolimits@todo.todo',
+    maintainer='Prajwal Dutta (SciNoLimits)',
+    maintainer_email='prazwaldutta7@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     extras_require={
@@ -30,7 +30,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'my_node = kinematic_control_turtle_bot_3.my_node:main',
+            'wait_for_odom = kinematic_control_turtle_bot_3.wait_for_odom:main',
             'minimal_velocity_publisher = kinematic_control_turtle_bot_3.minimal_velocity_publisher:main',
             'minimal_odometry_subscriber = kinematic_control_turtle_bot_3.minimal_odometry_subscriber:main',
             'tb3_siegwart_controller = kinematic_control_turtle_bot_3.tb3_siegwart_controller:main',
