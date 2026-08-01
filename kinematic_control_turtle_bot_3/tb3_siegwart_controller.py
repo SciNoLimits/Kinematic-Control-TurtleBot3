@@ -66,6 +66,7 @@ class SiegwartController(Node):
         self.x = 0.0  # meters
         self.y = 0.0  # meters
         self.yaw = 0.0  # radians
+        self.odom_received = False
 
         self.subscriber_ = self.create_subscription(
             msg_type=Odometry,
@@ -92,6 +93,7 @@ class SiegwartController(Node):
         Called automatically every time /odom publishes.
         Extracts x, y, and yaw from the Odometry message.
         """
+        self.odom_received = True
         self.x = msg.pose.pose.position.x
         self.y = msg.pose.pose.position.y
         q = msg.pose.pose.orientation
@@ -141,6 +143,9 @@ class SiegwartController(Node):
 
     def control_loop(self):
         """Main control loop"""
+        
+        if not self.odom_received:
+            return
 
         rho, alpha, beta = self.compute_error()
 
